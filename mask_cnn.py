@@ -165,7 +165,7 @@ def main():
         print(f"[{camera_id}] processing {len(video_names)} video(s)")
         all_detections = []
         for vn in video_names:
-            video_path = "/oscar/data/class/csci1430/students/hbcarr/parking/videos/"+vn
+            video_path = Path("/oscar/data/class/csci1430/students/hbcarr/parking/videos/"+vn)
             if not video_path.exists():
                 print(f"  ! missing: {video_path}")
                 continue
