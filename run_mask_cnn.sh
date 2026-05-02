@@ -16,7 +16,7 @@ CONDA_ENV=parking
 set -euo pipefail
 mkdir -p logs
 
-module load conda
+module load anaconda3
 source activate "$CONDA_ENV"
 
 echo "Running on $(hostname)"
@@ -29,6 +29,3 @@ python infer_maskrcnn.py \
     --out-dir      "$PROJECT/detection_cache_maskrcnn" \
     --cameras-json "$PROJECT/videos_by_camera.json" \
     --n-samples-per-video 100
-
-    rsync -avP --partial videos \
-    hbcarr@ssh.ccv.brown.edu:/oscar/data/class/csci1430/students/hbcarr/parking
