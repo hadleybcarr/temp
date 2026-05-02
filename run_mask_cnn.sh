@@ -21,9 +21,7 @@ source ~/.local/bin/env
 echo "Running on $(hostname)"
 nvidia-smi || true
 
-cd "$PROJECT"
-
-python infer_maskrcnn.py \
+python mask_cnn.py 
     --videos-dir   "$PROJECT/videos" \
     --out-dir      "$PROJECT/detection_cache_maskrcnn" \
     --cameras-json "$PROJECT/videos_by_camera.json" \
