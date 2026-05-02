@@ -9,7 +9,7 @@
 #SBATCH -e logs/maskrcnn-%j.err
 
 # ---- adjust these for your setup ----
-PROJECT=/oscar/data/class/csci1430/students/hbcarr/parking
+PROJECT="/oscar/data/class/csci1430/students/hbcarr/parking"
 # -------------------------------------
 
 set -euo pipefail
