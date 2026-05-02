@@ -9,14 +9,14 @@
 #SBATCH -e logs/maskrcnn-%j.err
 
 # ---- adjust these for your setup ----
-PROJECT="/oscar/data/class/csci1430/students/hbcarr/parking"
+PROJECT=/oscar/data/class/csci1430/students/hbcarr/parking
 # -------------------------------------
 
 set -euo pipefail
 mkdir -p logs
 
+source myenv/bin/activate
 module load anaconda3
-source ~/.local/bin/env
 
 echo "Running on $(hostname)"
 nvidia-smi || true
