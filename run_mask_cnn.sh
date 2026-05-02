@@ -14,7 +14,7 @@ PROJECT=/oscar/data/class/csci1430/students/hbcarr/parking
 
 mkdir -p logs
 
-source /myenv/bin/activate
+source myenv/bin/activate
 module load anaconda3
 python -c "import cv2; print('cv2:', cv2.__version__)"
 
@@ -24,7 +24,7 @@ set -euo pipefail
 echo "Running on $(hostname)"
 nvidia-smi || true
 
-python mask_cnn.py 
+python3 mask_cnn.py 
     --videos-dir   "$PROJECT/videos" \
     --out-dir      "$PROJECT/detection_cache_maskrcnn" \
     --cameras-json "$PROJECT/videos_by_camera.json" \
