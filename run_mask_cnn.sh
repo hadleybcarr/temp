@@ -16,7 +16,7 @@ CONDA_ENV=parking
 set -euo pipefail
 mkdir -p logs
 
-module load miniconda3
+module load conda
 source activate "$CONDA_ENV"
 
 echo "Running on $(hostname)"
