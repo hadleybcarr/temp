@@ -10,14 +10,13 @@
 
 # ---- adjust these for your setup ----
 PROJECT=/oscar/data/class/csci1430/students/hbcarr/parking
-CONDA_ENV=parking
 # -------------------------------------
 
 set -euo pipefail
 mkdir -p logs
 
 module load anaconda3
-source activate "$CONDA_ENV"
+source source myenv/bin/activate
 
 echo "Running on $(hostname)"
 nvidia-smi || true
