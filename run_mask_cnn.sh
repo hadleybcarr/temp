@@ -16,7 +16,7 @@ set -euo pipefail
 mkdir -p logs
 
 module load anaconda3
-source source myenv/bin/activate
+source ~/.local/bin/env
 
 echo "Running on $(hostname)"
 nvidia-smi || true
