@@ -2,14 +2,13 @@ import argparse
 import json
 import pickle
 from pathlib import Path
-
 import cv2
 import numpy as np
 import torch
 import torchvision
 
 videos_by_camera = {
-    "thayer_angle_1": ["black_car_leaving_thayer.mp4", "car_leaving_thayer.mp4", "gray_pullout.mp4", "parallel_parking_process.mp4", "thayer_dark_gray_car.mp4", "thayer_leaving_parking.mp4", "thayer_leaving_parking.mp4", "two_car_thayer_parking.mp4", "two_cars_leave.mp4", "white_parallel_parking.mp4", "white_parallel_thayer.mp4"],
+    "thayer_angle_1": ["black_car_leaving_thayer.mp4", "car_leaving_thayer.mp4", "gray_pullout.mp4", "parallel_parking_process.mp4", "thayer_dark_gray_car.mp4", "thayer_leaving_parking.mp4", "two_car_thayer_parking.mp4", "two_cars_leave.mp4", "white_parallel_parking.mp4", "white_parallel_thayer.mp4"],
     "thayer_angle_2": ["car_adjusting.mp4", "driving_to_parked.mp4"],
     "thayer_angle_3": ["gray_car_pullin_thayer.mp4",],
     "thayer_angle_4": ["outside_of_bounds.mp4"],
@@ -137,8 +136,6 @@ def process_video(video_path, model, n_samples):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--videos-dir", type=Path, required=True,
-                        help="Root directory containing video files")
     parser.add_argument("--out-dir", type=Path, required=True,
                         help="Where to write per-camera pickle caches")
     parser.add_argument("--cameras-json", type=Path, required=True,

@@ -22,10 +22,9 @@ python -c "import cv2; print('cv2:', cv2.__version__)"
 set -euo pipefail
 
 echo "Running on $(hostname)"
-nvidia-smi || true
+#nvidia-smi || true
 
-python3 mask_cnn.py 
-    --videos-dir   "$PROJECT/videos" \
+python3 mask_cnn.py \
     --out-dir      "$PROJECT/detection_cache_maskrcnn" \
     --cameras-json "$PROJECT/videos_by_camera.json" \
     --n-samples-per-video 100
