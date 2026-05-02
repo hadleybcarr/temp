@@ -8,15 +8,18 @@
 #SBATCH -o logs/maskrcnn-%j.out
 #SBATCH -e logs/maskrcnn-%j.err
 
-# ---- adjust these for your setup ----
-PROJECT=/oscar/data/class/csci1430/students/hbcarr/parking
-# -------------------------------------
 
-set -euo pipefail
+PROJECT=/oscar/data/class/csci1430/students/hbcarr/parking
+
+
 mkdir -p logs
 
 source myenv/bin/activate
 module load anaconda3
+python -c "import cv2; print('cv2:', cv2.__version__)"
+
+
+set -euo pipefail
 
 echo "Running on $(hostname)"
 nvidia-smi || true
