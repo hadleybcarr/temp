@@ -14,7 +14,7 @@ PROJECT=/oscar/data/class/csci1430/students/hbcarr/parking
 
 mkdir -p logs
 
-source myenv/bin/activate
+source /myenv/bin/activate
 module load anaconda3
 python -c "import cv2; print('cv2:', cv2.__version__)"
 
