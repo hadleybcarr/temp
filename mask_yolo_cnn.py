@@ -8,7 +8,7 @@ import torch
 import torchvision
 from ultralytics import YOLO
 
-world_model = YOLO('yolov8s-worldv2.pt')
+world_model = YOLO('yolo11m.pt')
 
 videos_by_camera = {
     "thayer_angle_1": ["black_car_leaving_thayer.mp4", "car_leaving_thayer.mp4", "gray_pullout.mp4", "parallel_parking_process.mp4", "thayer_dark_gray_car.mp4", "thayer_leaving_parking.mp4", "two_car_thayer_parking.mp4", "two_cars_leave.mp4", "white_parallel_parking.mp4", "white_parallel_thayer.mp4"],
