@@ -26,7 +26,8 @@ videos_by_camera = {
     "pickup_angle_3": ["gray_car_leaving.mp4"],
     "pickup_angle_4": ["multi_car.mp4", "multicar_movement.mp4", "one_car_pullout.mp4", "one_park_one_leave.mp4", "parallel_park_pullup.mp4", "parking_and_leaving.mp4", "several_car_movement.mp4", "several_cars_leave.mp4", "two_cars_leave.mp4", ],
     "pickup_angle_5": ["two_cars_leave.mp4","white_car_pullup.mp4" ],
-    "sci_li_video": ["lines_car_leaving.mov", "lines_car_parking.mov"]
+    "sci_li_video": ["lines_car_leaving.mov"],
+    "side_street": ["lines_car_parking.mov"],
 }
 
 VEHICLE_CLASSES_TORCHVISION = {3, 4, 6, 8}
