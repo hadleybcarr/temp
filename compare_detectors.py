@@ -39,6 +39,24 @@ import cv2
 import numpy as np
 
 
+videos_by_camera = {
+    "thayer_angle_1": ["black_car_leaving_thayer.mp4", "car_leaving_thayer.mp4", "gray_pullout.mp4", "two_car_thayer_parking.mp4", "white_parallel_parking.mp4", "white_parallel_thayer.mp4"],
+    "thayer_angle_2": ["car_adjusting.mp4", "driving_to_parked.mp4"],
+    "thayer_angle_3": ["gray_car_pullin_thayer.mp4", "parallel_parking_process.mp4", "thayer_dark_gray_car.mp4", "thayer_leaving_parking.mp4"],
+    "thayer_angle_4": ["outside_of_bounds.mp4"],
+    "thayer_angle_5": ["parallel_park.mp4"],
+    "thayer_angle_6": ["parked_to_parking.mp4"],
+    "pickup_angle_1": ["cars_leave_cars_park.mp4", "cars_staying_and_leaving.mp4"],
+    "pickup_angle_2": ["cars_leaving.mp4"],
+    "pickup_angle_3": ["gray_car_leaving.mp4"],
+    "pickup_angle_4": ["multi_car.mp4", "multicar_movement.mp4", "one_car_pullout.mp4", "one_park_one_leave.mp4", "parallel_park_pullup.mp4", "parking_and_leaving.mp4", "several_car_movement.mp4", "several_cars_leave.mp4"],
+    "pickup_angle_5": ["two_cars_leave.mp4","white_car_pullup.mp4" ]
+}
+
+
+
+
+
 # ---------- model registry ----------
 
 MODELS = {
@@ -352,7 +370,6 @@ def main():
                         help="Don't run any new inference; only use existing pickles")
     args = parser.parse_args()
 
-    videos_by_camera = json.loads(args.videos_json.read_text())
 
     if not args.no_run:
         ensure_pickles(args, videos_by_camera)
