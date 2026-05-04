@@ -208,6 +208,18 @@ def run_video(variant, video_path, sample_every=5):
                 continue
             out.extend(run_yolo(model, frame, f_idx, video_path.name))
 
+    elif spec["kind"] == "maskrcnn":
+        import torch
+        from torchvision.models.detection import maskrcnn_resnet50_fpn_v2
+        device = "cuda" if torch.cuda.is_available() else "cpu"
+        mmodel = maskrcnn_resnet50_fpn_v2(weights="DEFAULT").to(device).eval()
+        for f_idx in sample_idxs:
+            cap.set(cv2.CAP_PROP_POS_FRAMES, f_idx)
+            ok, frame = cap.read()
+            if not ok:
+                continue
+            out.extend(run_maskrcnn(mmodel, frame, f_idx, video_path.name, device))
+
     elif spec["kind"] == "fused":
         from ultralytics import YOLO
         import torch
@@ -232,13 +244,15 @@ def run_video(variant, video_path, sample_every=5):
 
 # ---------- driver ----------
 
-def ensure_pickles(args, videos_by_camera):
+def ensure_pickles(args):
     print("Ensuring pickles...")
     """Run any (variant, camera) combination whose pickle is missing."""
-    for variant in Path("/oscar/data/class/csci1430/students/hbcarr/parking/caches").iterdir():
-        out_dir = variant
+    pickle_root = Path("/oscar/data/class/csci1430/students/hbcarr/parking/caches")
+    for variant in pickle_root:
+        out_dir = pickle_root / variant
         print(out_dir, "is output directory")
         out_dir.mkdir(parents=True, exist_ok=True)
+        print(f"[{variant}] cache dir: {out_dir}")
         for camera, videos in videos_by_camera.items():
             pkl = out_dir / f"{camera}.pkl"
             if pkl.exists():
@@ -246,8 +260,9 @@ def ensure_pickles(args, videos_by_camera):
                 continue
             print(f"[{variant}/{camera}] running on {len(videos)} video(s)")
             dets = []
+            video_directory = Path("/oscar/data/class/csci1430/students/hbcarr/parking/videos")
             for v in videos:
-                vp = args.videos_dir / v
+                vp = video_directory / v
                 if not vp.exists():
                     print(f"  ! missing video: {vp}")
                     continue
@@ -377,7 +392,7 @@ def main():
 
 
     if not args.no_run:
-        ensure_pickles(args, videos_by_camera)
+        ensure_pickles(args)
 
     det_table, confs = summarize_pickles(args, videos_by_camera)
     print("\nRaw detection counts:")
