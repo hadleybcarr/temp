@@ -279,7 +279,7 @@ def run_infer_spots(args, videos_by_camera):
     spots_table = defaultdict(dict)
     for variant in args.variants:
         cache_dir =  variant
-        spots_json = cache_dir / "_spots.json"
+        spots_json = cache_dir +"/_spots.json"
         if not spots_json.exists():
             print(f"[{variant}] running infer_spots.py")
             subprocess.run([
