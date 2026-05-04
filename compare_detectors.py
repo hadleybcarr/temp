@@ -260,7 +260,7 @@ def summarize_pickles(args, videos_by_camera):
     confs = defaultdict(list)        # confs[variant]         = [scores ...]
     for variant in args.variants:
         for camera in videos_by_camera:
-            pkl = args.pickle_root / variant / f"{camera}.pkl"
+            pkl = Path("/oscar/data/class/csci1430/students/hbcarr/parking/caches") / variant / f"{camera}.pkl"
             if not pkl.exists():
                 continue
             with open(pkl, "rb") as f:
@@ -275,7 +275,7 @@ def run_infer_spots(args, videos_by_camera):
     return spot counts per (camera, variant)."""
     spots_table = defaultdict(dict)
     for variant in args.variants:
-        cache_dir = args.pickle_root / variant
+        cache_dir = Path("/oscar/data/class/csci1430/students/hbcarr/parking/caches") / variant
         spots_json = cache_dir / "_spots.json"
         if not spots_json.exists():
             print(f"[{variant}] running infer_spots.py")
