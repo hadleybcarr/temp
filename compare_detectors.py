@@ -233,7 +233,7 @@ def run_video(variant, video_path, sample_every=5):
 
 def ensure_pickles(args, videos_by_camera):
     """Run any (variant, camera) combination whose pickle is missing."""
-    for variant in Path("oscar/data/class/csci1430/students/hbcarr/parking/caches").iterdir():
+    for variant in Path("/oscar/data/class/csci1430/students/hbcarr/parking/caches").iterdir():
         out_dir = variant
         out_dir.mkdir(parents=True, exist_ok=True)
         for camera, videos in videos_by_camera.items():
