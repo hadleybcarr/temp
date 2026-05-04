@@ -248,7 +248,8 @@ def ensure_pickles(args):
     print("Ensuring pickles...")
     """Run any (variant, camera) combination whose pickle is missing."""
     pickle_root = "/oscar/data/class/csci1430/students/hbcarr/parking/caches"
-    for variant in pickle_root:
+    variants = ["yolov8", "yolo11", "yolo_world", "maskrcnn", "mask_yolo_rcnn", "mask_yolo_world"]
+    for variant in variants:
         out_dir = pickle_root / variant
         print(out_dir, "is output directory")
         out_dir.mkdir(parents=True, exist_ok=True)
