@@ -8,7 +8,11 @@ import torch
 import torchvision
 from ultralytics import YOLO
 
-world_model = YOLO('yolo11m.pt')
+#Moving videos to oscar: rsync -avh --progress \
+#   sci_li_videos/ \
+#    hbcarr@ssh.ccv.brown.edu:/oscar/data/class/csci1430/students/hbcarr/parking/videos/
+
+world_model = YOLO('yolov8s-worldv2.pt')
 
 videos_by_camera = {
     "thayer_angle_1": ["black_car_leaving_thayer.mp4", "car_leaving_thayer.mp4", "gray_pullout.mp4", "parallel_parking_process.mp4", "thayer_dark_gray_car.mp4", "thayer_leaving_parking.mp4", "two_car_thayer_parking.mp4", "two_cars_leave.mp4", "white_parallel_parking.mp4", "white_parallel_thayer.mp4"],
@@ -21,7 +25,8 @@ videos_by_camera = {
     "pickup_angle_2": ["cars_leaving.mp4", ],
     "pickup_angle_3": ["gray_car_leaving.mp4"],
     "pickup_angle_4": ["multi_car.mp4", "multicar_movement.mp4", "one_car_pullout.mp4", "one_park_one_leave.mp4", "parallel_park_pullup.mp4", "parking_and_leaving.mp4", "several_car_movement.mp4", "several_cars_leave.mp4", "two_cars_leave.mp4", ],
-    "pickup_angle_5": ["two_cars_leave.mp4","white_car_pullup.mp4" ]
+    "pickup_angle_5": ["two_cars_leave.mp4","white_car_pullup.mp4" ],
+    "sci_li_video": ["lines_car_leaving.mov", "lines_car_parking.mov"]
 }
 
 VEHICLE_CLASSES_TORCHVISION = {3, 4, 6, 8}
