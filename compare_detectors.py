@@ -183,6 +183,7 @@ def fuse(yolo_dets, mask_dets):
 
 
 def run_video(variant, video_path, sample_every=5):
+    print("Running model...")
     """Returns a list of detection dicts for the given video + variant."""
     spec = MODELS[variant]
     cap = cv2.VideoCapture(str(video_path))
@@ -275,7 +276,7 @@ def run_infer_spots(args, videos_by_camera):
     return spot counts per (camera, variant)."""
     spots_table = defaultdict(dict)
     for variant in args.variants:
-        cache_dir = Path("/oscar/data/class/csci1430/students/hbcarr/parking/caches") / variant
+        cache_dir =  variant
         spots_json = cache_dir / "_spots.json"
         if not spots_json.exists():
             print(f"[{variant}] running infer_spots.py")
