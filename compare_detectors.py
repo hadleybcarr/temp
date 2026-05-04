@@ -247,7 +247,7 @@ def run_video(variant, video_path, sample_every=5):
 def ensure_pickles(args):
     print("Ensuring pickles...")
     """Run any (variant, camera) combination whose pickle is missing."""
-    pickle_root = Path("/oscar/data/class/csci1430/students/hbcarr/parking/caches")
+    pickle_root = "/oscar/data/class/csci1430/students/hbcarr/parking/caches"
     for variant in pickle_root:
         out_dir = pickle_root / variant
         print(out_dir, "is output directory")
