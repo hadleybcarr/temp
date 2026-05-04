@@ -354,9 +354,6 @@ def make_plot(det_table, spot_table, variants, out_path):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--videos-json", type=Path, required=True,
-                        help="JSON: { camera_id: [video_filename, ...] }")
-    parser.add_argument("--videos-dir",  type=Path, required=True)
     parser.add_argument("--pickle-root", type=Path, default=Path("detections"),
                         help="Per-variant pickles live in <root>/<variant>/<camera>.pkl")
     parser.add_argument("--variants",    nargs="*", default=list(MODELS.keys()),
@@ -369,6 +366,11 @@ def main():
     parser.add_argument("--no-run",      action="store_true",
                         help="Don't run any new inference; only use existing pickles")
     args = parser.parse_args()
+
+    '''python3 compare_detectors.py \
+    --pickle-root detections \
+    --plot-out    detector_comparison.png
+'''
 
 
     if not args.no_run:
