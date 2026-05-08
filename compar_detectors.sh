@@ -15,7 +15,7 @@ module load cudnn/8.7.0               # match your torch build
 
 # Activate your virtual-env / conda env
 # Option A – virtualenv:
-source ~/envs/parking/bin/activate
+source myenv/bin/activate
 # Option B – conda (uncomment and adjust):
 # module load miniconda3/23.11.0
 # conda activate parking
