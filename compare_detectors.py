@@ -295,8 +295,8 @@ def run_infer_spots(args, videos_by_camera):
     spots_table = defaultdict(dict)
     for variant in args.variants:
         cache_dir =  Path(f"/oscar/data/class/csci1430/students/hbcarr/parking/caches/{variant}")
-        variant.mkdir(parents=True, exist_ok=True)
-        spots_json = Path(variant,"_spots.json")
+        spots_json = Path(f"{variant}_spots.json")
+        print("spots json is", spots_json)
         if not spots_json.exists():
             print(f"[{variant}] running infer_spots.py")
             subprocess.run([
@@ -308,11 +308,12 @@ def run_infer_spots(args, videos_by_camera):
         if Path(result).exists():
             with open(result, "r") as f:
                 spots = json.load(f)
-            with open(spots_json, "w") as new_file:
-                json.dump(spots, new_file, indent=2)
-        if not spots_json.exists():
-            print(f"  ! couldn't locate spots json for {variant}")
-            continue
+            if not spots_json.exists():
+                print(f"  ! couldn't locate spots json for {variant}")
+                continue
+            else: 
+                with open(spots_json, "w") as new_file:
+                    json.dump(spots, new_file, indent=2)
         data = json.loads(spots_json.read_text())
         # support both flat and nested schemas
         cams = data.get("cameras", data)
