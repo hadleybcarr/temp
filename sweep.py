@@ -504,10 +504,13 @@ def score_camera(stats):
 # Anything NOT listed here uses the value from DEFAULT_PARAMS (or whatever you
 # pass via CLI). Keep the grid small -- size = product of all list lengths.
 SWEEP_GRID = {
-    "min_dwell":           [3, 5, 7, 10],
-    "min_observations":    [10, 20, 30],
     "min_visit_dwell":     [2, 4, 6],
-    "max_visit_velocity":  [2.0, 4.0, 6.0],
+    "max_visit_velocity":  [2.0, 3.0, 4.0],
+    "visit_gap_frames":    [10, 20, 30],
+    "max_intra_visit_std": [20, 30, 40],
+    "size_min_ratio":      [0.4, 0.5, 0.6],
+    "size_max_ratio":      [1.8, 2.0, 2.2],
+    "min_visits":          [1, 2],
 }
 
 
@@ -560,6 +563,7 @@ def main():
     parser.add_argument("--min-visits",          type=int)
     parser.add_argument("--min-dwell",           type=int)
     parser.add_argument("--min-obs", dest="min_observations", type=int)
+    parser.add_argument("--visualize", type=Path)
     args = parser.parse_args()
 
     args.out_dir.mkdir(parents=True, exist_ok=True)
@@ -611,6 +615,10 @@ def main():
         for r in results[:5]:
             print(f"  score={r['aggregate']['total_score']:.1f}  {r['swept_params']}")
         return
+    
+    if args.visualize:
+        with open("param_compare_mask_yolo_world.json", "r") as f:
+            param_compare = json.load(f)
 
     # ----- single-run mode -----
     spots_by_camera = {}
