@@ -303,10 +303,8 @@ def run_infer_spots(args, videos_by_camera):
                 "--cache-dir", str(cache_dir),
             ], check=False)
             # infer_spots writes to a file in CWD; pull it in if it exists
-            for candidate in ("mask_spots_by_cam.json", "spots_by_camera.json"):
-                if Path(candidate).exists():
-                    Path(candidate).rename(spots_json)
-                    break
+        if Path("mask_spots_by_cam.json").exists():
+            Path("mask_spots_by_cam.json").rename(spots_json)
         if not spots_json.exists():
             print(f"  ! couldn't locate spots json for {variant}")
             continue
