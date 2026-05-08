@@ -295,8 +295,7 @@ def run_infer_spots(args, videos_by_camera):
     spots_table = defaultdict(dict)
     for variant in args.variants:
         cache_dir =  Path(f"/oscar/data/class/csci1430/students/hbcarr/parking/caches/{variant}")
-        spots_json = Path(variant +"/_spots.json")
-        cache_dir.mkdir(parents=True, exist_ok=True)
+        spots_json = Path(variant,"_spots.json")
         if not spots_json.exists():
             print(f"[{variant}] running infer_spots.py")
             subprocess.run([
@@ -305,7 +304,9 @@ def run_infer_spots(args, videos_by_camera):
             ], check=False)
             # infer_spots writes to a file in CWD; pull it in if it exists
         if Path("mask_spots_by_cam.json").exists():
+            print("Masks.json exists")
             Path("mask_spots_by_cam.json").rename(spots_json)
+            print("Renaming?")
         if not spots_json.exists():
             print(f"  ! couldn't locate spots json for {variant}")
             continue
