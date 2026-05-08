@@ -296,6 +296,7 @@ def run_infer_spots(args, videos_by_camera):
     for variant in args.variants:
         cache_dir =  Path(f"/oscar/data/class/csci1430/students/hbcarr/parking/caches/{variant}")
         spots_json = Path(variant +"/_spots.json")
+        cache_dir.mkdir(parents=True, exist_ok=True)
         if not spots_json.exists():
             print(f"[{variant}] running infer_spots.py")
             subprocess.run([
