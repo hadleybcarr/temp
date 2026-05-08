@@ -305,9 +305,9 @@ def run_infer_spots(args, videos_by_camera):
             # infer_spots writes to a file in CWD; pull it in if it exists
         result = Path("mask_spots_by_cam.json")
         if Path(result).exists():
-            with open(result, "wb") as f:
+            with open(result, "r") as f:
                 spots = json.load(f)
-            with open(spots_json) as new_file:
+            with open(spots_json, "w") as new_file:
                 json.dump(spots, new_file, indent=2)
         if not spots_json.exists():
             print(f"  ! couldn't locate spots json for {variant}")
