@@ -33,7 +33,7 @@ echo "python:    $(which python3)"
 echo "cache dir: ${CACHE_DIR}"
 echo "out dir:   ${OUT_DIR}/${SWEEP_OUT}"
 
-python3 infer_spots.py \
+python3 sweep_spots.py \
     --cache-dir "${CACHE_DIR}" \
     --out-dir   "${OUT_DIR}" \
     --sweep-out "${SWEEP_OUT}" \
