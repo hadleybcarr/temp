@@ -294,8 +294,8 @@ def run_infer_spots(args, videos_by_camera):
     return spot counts per (camera, variant)."""
     spots_table = defaultdict(dict)
     for variant in args.variants:
-        cache_dir =  variant
-        spots_json = Path(cache_dir +"/_spots.json")
+        cache_dir =  Path(f"/oscar/data/class/csci1430/students/hbcarr/parking/caches/{variant}")
+        spots_json = Path(variant +"/_spots.json")
         if not spots_json.exists():
             print(f"[{variant}] running infer_spots.py")
             subprocess.run([
